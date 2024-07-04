@@ -7,24 +7,24 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import me.tatarka.inject.annotations.Inject
 
-interface AppNavigation {
+interface AppNavigationFactory {
 
     fun create(
-        navGraphBuilder: NavGraphBuilder,
         navController: NavController,
+        navGraphBuilder: NavGraphBuilder,
         modifier: Modifier = Modifier,
     )
 }
 
 @Inject
-class AppNavigationImpl(
+class AppNavigationFactoryImpl(
     private val homeRoute: HomeRoute,
     private val imageRoute: ImageRoute,
-) : AppNavigation {
+) : AppNavigationFactory {
 
     override fun create(
-        navGraphBuilder: NavGraphBuilder,
         navController: NavController,
+        navGraphBuilder: NavGraphBuilder,
         modifier: Modifier,
     ) {
         with(navGraphBuilder) {
