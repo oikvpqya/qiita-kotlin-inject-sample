@@ -59,11 +59,11 @@ typealias HomeRoute = @Composable (
 @Composable
 @Inject
 fun HomeRoute(
-    homeViewModel: () -> HomeViewModel,
+    viewModelFactory: () -> HomeViewModel,
     @Assisted navController: NavController,
     @Assisted modifier: Modifier = Modifier,
 ) {
-    val viewModel = viewModel { homeViewModel() }
+    val viewModel = viewModel { viewModelFactory() }
 
     val data: ImmutableList<String> by remember(viewModel) {
         viewModel.get()

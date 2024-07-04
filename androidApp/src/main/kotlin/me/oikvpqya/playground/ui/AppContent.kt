@@ -21,7 +21,7 @@ interface AppContent {
 
 @Inject
 class AppContentImpl(
-    private val appNavigation: AppNavigation,
+    private val appNavigationFactory: AppNavigationFactory,
     private val imageLoader: ImageLoader,
 ) : AppContent {
 
@@ -34,7 +34,7 @@ class AppContentImpl(
         MaterialTheme {
             Surface {
                 App(
-                    appNavigation = appNavigation,
+                    appNavigationFactory = appNavigationFactory,
                     modifier = modifier,
                 )
             }
@@ -44,7 +44,7 @@ class AppContentImpl(
 
 @Composable
 fun App(
-    appNavigation: AppNavigation,
+    appNavigationFactory: AppNavigationFactory,
     modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
@@ -53,9 +53,9 @@ fun App(
         startDestination = Home,
         modifier = modifier,
     ) {
-        appNavigation.create(
-            navGraphBuilder = this,
+        appNavigationFactory.create(
             navController = navController,
+            navGraphBuilder = this,
         )
     }
 }
