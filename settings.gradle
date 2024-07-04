@@ -17,7 +17,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "playground"
+rootProject.name = "qiita-kotlin-inject-sample"
 include ":androidApp"
-include ":composeApp"
-include ":library"
