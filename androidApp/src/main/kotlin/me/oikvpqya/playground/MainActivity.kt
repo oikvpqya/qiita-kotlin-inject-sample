@@ -3,21 +3,22 @@ package me.oikvpqya.playground
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.ui.Modifier
+import me.oikvpqya.playground.di.MainActivityComponent
+import me.oikvpqya.playground.di.applicationComponent
+import me.oikvpqya.playground.di.create
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val component = MainActivityComponent::class.create(this, applicationComponent)
 
         setContent {
-            MaterialTheme {
-                Surface {
-                    Text("Hello!")
-                }
-            }
+            component.appContent.Content(
+                appNavigation = component.appNavigation,
+                modifier = Modifier,
+            )
         }
     }
 }

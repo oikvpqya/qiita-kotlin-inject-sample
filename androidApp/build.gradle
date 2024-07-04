@@ -1,7 +1,9 @@
 plugins {
     alias libs.plugins.android.application
     alias libs.plugins.compose.compiler
+    alias libs.plugins.google.ksp
     alias libs.plugins.kotlin.android
+    alias libs.plugins.kotlin.serialization
 }
 
 kotlin {
@@ -13,7 +15,6 @@ android {
     namespace "me.oikvpqya.playground"
 
     defaultConfig {
-        applicationId "me.oikvpqya.playground"
         minSdk 21
         targetSdk 34
         versionCode 1
@@ -34,9 +35,21 @@ android {
 
 dependencies {
     implementation libs.androidx.activity.compose
-    implementation libs.androidx.compose.foundation
     implementation libs.androidx.compose.material
     implementation libs.androidx.compose.ui
     implementation libs.androidx.core.ktx
-    implementation libs.kotlinx.coroutines.android
+    implementation libs.androidx.lifecycle.runtime.compose
+    implementation libs.androidx.lifecycle.viewmodel.compose
+    implementation libs.androidx.navigation.compose
+    ksp libs.androidx.room.compiler
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.sqlite.bundled
+    implementation libs.coil.coil3.compose
+    implementation libs.coil.coil3.network.okhttp
+    implementation libs.kotlinx.collections.immutable
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.datetime
+    implementation libs.kotlinx.serialization.core
+    ksp libs.tatarka.inject.compiler
+    implementation libs.tatarka.inject.runtime
 }
