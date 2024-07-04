@@ -16,7 +16,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             component.appContent.Content(
-                appNavigation = component.appNavigation,
                 modifier = Modifier,
             )
         }

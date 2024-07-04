@@ -19,8 +19,6 @@ interface AppContentComponent {
 
 interface AppNavigationComponent {
 
-    val appNavigation: AppNavigation
-
     @MainActivityScope
     @Provides
     fun bindAppNavigation(bind: AppNavigationImpl): AppNavigation = bind

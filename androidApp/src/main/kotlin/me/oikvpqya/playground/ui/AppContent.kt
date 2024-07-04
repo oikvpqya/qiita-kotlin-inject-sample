@@ -15,20 +15,19 @@ interface AppContent {
 
     @Composable
     fun Content(
-        appNavigation: AppNavigation,
         modifier: Modifier,
     )
 }
 
 @Inject
 class AppContentImpl(
+    private val appNavigation: AppNavigation,
     private val imageLoader: ImageLoader,
 ) : AppContent {
 
     @OptIn(ExperimentalCoilApi::class)
     @Composable
     override fun Content(
-        appNavigation: AppNavigation,
         modifier: Modifier,
     ) {
         setSingletonImageLoaderFactory { imageLoader }
