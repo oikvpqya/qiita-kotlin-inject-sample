@@ -1,14 +1,14 @@
 [versions]
 androidGradlePlugin = "8.5.0"
 androidxActivity = "1.9.0"
-androidxCompose = "1.6.8"
 androidxCore = "1.13.1"
-androidxLifecycle = "2.8.3"
-androidxNavigation = "2.8.0-beta04"
 androidxRoom = "2.7.0-alpha04"
 androidxSqlite = "2.5.0-alpha04"
 coilCoil3 = "3.0.0-alpha07"
 googleKsp = "2.0.0-1.0.22"
+jetbrainsCompose = "1.7.0-alpha01"
+jetbrainsLifecycle = "2.8.0"
+jetbrainsNavigation = "2.8.0-alpha08"
 kotlin = "2.0.0"
 kotlinxCollectionsImmutable = "0.3.7"
 kotlinxCoroutines = "1.8.1"
@@ -18,12 +18,7 @@ tatarkaInject = "0.7.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
-androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidxCompose" }
-androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidxCompose" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
-androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
-androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
 # https://developer.android.com/kotlin/multiplatform/room
 # https://developer.android.com/kotlin/multiplatform/sqlite
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidxRoom" }
@@ -31,8 +26,12 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "androidxSqlite" }
 coil-coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCoil3" }
 coil-coil3-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilCoil3" }
+jetbrains-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "jetbrainsLifecycle" }
+jetbrains-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "jetbrainsLifecycle" }
+jetbrains-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "jetbrainsNavigation" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinxCoroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 tatarka-inject-compiler = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp", version.ref = "tatarkaInject" }
@@ -42,5 +41,6 @@ tatarka-inject-runtime = { module = "me.tatarka.inject:kotlin-inject-runtime", v
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "googleKsp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrainsCompose" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

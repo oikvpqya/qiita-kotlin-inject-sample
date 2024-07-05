@@ -1,16 +1,16 @@
 package me.oikvpqya.playground.di
 
-import android.content.Context
 import coil3.ImageLoader
+import coil3.PlatformContext
 import coil3.util.DebugLogger
 import me.tatarka.inject.annotations.Provides
 
-interface CoilImageLoaderComponent {
+interface CoilImageLoaderComponent : CoilImageLoaderPlatformComponent {
 
     @ApplicationScope
     @Provides
     fun provideImageLoader(
-        context: Context,
+        context: PlatformContext,
     ): ImageLoader {
         return ImageLoader
             .Builder(context)

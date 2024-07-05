@@ -17,6 +17,10 @@ import kotlinx.coroutines.flow.Flow
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun table1Dao(): Table1Dao
+
+    companion object {
+        const val DATABASE_NAME = "app.db"
+    }
 }
 
 @Dao
