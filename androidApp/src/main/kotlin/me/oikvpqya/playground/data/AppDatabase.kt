@@ -29,15 +29,10 @@ interface Table1Dao {
     )
     fun get(): Flow<List<String>>
 
-//    @Query(
-//        value = """
-//        INSERT INTO table1
-//        VALUES (:string) ON CONFLICT (string) DO NOTHING
-//    """
     @Query(
         value = """
         INSERT INTO table1
-        VALUES (:string)
+        VALUES (:string) ON CONFLICT (string) DO NOTHING
     """
     )
     suspend fun insert(string: String)
