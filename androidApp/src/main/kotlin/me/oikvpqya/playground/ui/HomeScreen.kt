@@ -14,6 +14,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.SharedFlow
@@ -23,7 +25,6 @@ import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 import me.oikvpqya.playground.data.DatabaseRepository
-import me.tatarka.inject.annotations.Assisted
 import me.tatarka.inject.annotations.Inject
 
 @Serializable
@@ -51,20 +52,24 @@ class HomeViewModel(
     }
 }
 
-typealias HomeRoute = @Composable (
-    navController: NavController,
-    modifier: Modifier,
-) -> Unit
+@Inject
+class HomeRouteFactory(
+    private val viewModelFactory: () -> HomeViewModel,
+) : AppRouteFactory {
+    override fun NavGraphBuilder.create(navController: NavController, modifier: Modifier) {
+        composable<Home> { _ ->
+            val viewModel = viewModel { viewModelFactory() }
+            HomeRoute(viewModel, navController, modifier)
+        }
+    }
+}
 
 @Composable
-@Inject
 fun HomeRoute(
-    viewModelFactory: () -> HomeViewModel,
-    @Assisted navController: NavController,
-    @Assisted modifier: Modifier = Modifier,
+    viewModel: HomeViewModel,
+    navController: NavController,
+    modifier: Modifier = Modifier,
 ) {
-    val viewModel = viewModel { viewModelFactory() }
-
     val data: ImmutableList<String> by remember(viewModel) {
         viewModel.get()
     }.collectAsStateWithLifecycle(initialValue = persistentListOf())

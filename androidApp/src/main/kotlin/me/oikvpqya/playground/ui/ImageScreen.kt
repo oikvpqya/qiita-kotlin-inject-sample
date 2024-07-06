@@ -6,9 +6,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import coil3.compose.AsyncImage
 import kotlinx.serialization.Serializable
-import me.tatarka.inject.annotations.Assisted
 import me.tatarka.inject.annotations.Inject
 
 @Serializable
@@ -16,18 +18,21 @@ data class Image(
     val path: String,
 )
 
-typealias ImageRoute = @Composable (
-    path: String,
-    navController: NavController,
-    modifier: Modifier,
-) -> Unit
+@Inject
+class ImageRouteFactory : AppRouteFactory {
+    override fun NavGraphBuilder.create(navController: NavController, modifier: Modifier) {
+        composable<Image> { backStackEntry ->
+            val image = backStackEntry.toRoute<Image>()
+            ImageRoute(image.path, navController, modifier)
+        }
+    }
+}
 
 @Composable
-@Inject
 fun ImageRoute(
-    @Assisted path: String,
-    @Assisted navController: NavController,
-    @Assisted modifier: Modifier = Modifier,
+    path: String,
+    navController: NavController,
+    modifier: Modifier = Modifier,
 ) {
     ImageScreen(
         path = path,

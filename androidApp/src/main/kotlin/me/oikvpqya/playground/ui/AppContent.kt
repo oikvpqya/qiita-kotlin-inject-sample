@@ -21,8 +21,8 @@ interface AppContent {
 
 @Inject
 class AppContentImpl(
-    private val appNavigationFactory: AppNavigationFactory,
     private val imageLoader: ImageLoader,
+    private val routeFactories: Set<AppRouteFactory>,
 ) : AppContent {
 
     @OptIn(ExperimentalCoilApi::class)
@@ -34,7 +34,7 @@ class AppContentImpl(
         MaterialTheme {
             Surface {
                 App(
-                    appNavigationFactory = appNavigationFactory,
+                    routeFactories = routeFactories,
                     modifier = modifier,
                 )
             }
@@ -44,7 +44,7 @@ class AppContentImpl(
 
 @Composable
 fun App(
-    appNavigationFactory: AppNavigationFactory,
+    routeFactories: Set<AppRouteFactory>,
     modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
@@ -53,9 +53,9 @@ fun App(
         startDestination = Home,
         modifier = modifier,
     ) {
-        appNavigationFactory.create(
+        create(
+            factories = routeFactories,
             navController = navController,
-            navGraphBuilder = this,
         )
     }
 }

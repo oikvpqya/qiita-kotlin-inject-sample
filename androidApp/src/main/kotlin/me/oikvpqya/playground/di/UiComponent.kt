@@ -2,11 +2,13 @@ package me.oikvpqya.playground.di
 
 import me.oikvpqya.playground.ui.AppContent
 import me.oikvpqya.playground.ui.AppContentImpl
-import me.oikvpqya.playground.ui.AppNavigationFactory
-import me.oikvpqya.playground.ui.AppNavigationFactoryImpl
+import me.oikvpqya.playground.ui.AppRouteFactory
+import me.oikvpqya.playground.ui.HomeRouteFactory
+import me.oikvpqya.playground.ui.ImageRouteFactory
+import me.tatarka.inject.annotations.IntoSet
 import me.tatarka.inject.annotations.Provides
 
-interface UiComponent : AppContentComponent, AppNavigationFactoryComponent
+interface UiComponent : AppContentComponent, AppRouteFactoryComponent
 
 interface AppContentComponent {
 
@@ -17,9 +19,15 @@ interface AppContentComponent {
     fun bindAppContent(bind: AppContentImpl): AppContent = bind
 }
 
-interface AppNavigationFactoryComponent {
+interface AppRouteFactoryComponent {
 
+    @IntoSet
     @MainActivityScope
     @Provides
-    fun bindNavigationFactory(bind: AppNavigationFactoryImpl): AppNavigationFactory = bind
+    fun bindHomeRouteFactory(bind: HomeRouteFactory): AppRouteFactory = bind
+
+    @IntoSet
+    @MainActivityScope
+    @Provides
+    fun bindImageRouteFactory(bind: ImageRouteFactory): AppRouteFactory = bind
 }
