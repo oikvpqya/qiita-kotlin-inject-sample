@@ -8,32 +8,24 @@ interface AppRouteFactory {
 
     fun NavGraphBuilder.create(
         navController: NavController,
-        modifier: Modifier = Modifier,
-    )
-
-    fun create(
-        navController: NavController,
-        navGraphBuilder: NavGraphBuilder,
         modifier: Modifier,
-    ) {
-        navGraphBuilder.create(
-            navController, modifier
-        )
-    }
+    )
 }
+
+fun AppRouteFactory.create(
+    navController: NavController,
+    navGraphBuilder: NavGraphBuilder,
+    modifier: Modifier = Modifier,
+) = navGraphBuilder.create(navController, modifier)
 
 fun NavGraphBuilder.create(
     factory: AppRouteFactory,
     navController: NavController,
     modifier: Modifier = Modifier,
-) {
-    factory.create(navController, this, modifier)
-}
+)  = factory.create(navController, this, modifier)
 
 fun NavGraphBuilder.create(
     factories: Set<AppRouteFactory>,
     navController: NavController,
     modifier: Modifier = Modifier,
-) {
-    factories.forEach { create(it, navController, modifier) }
-}
+) = factories.forEach { create(it, navController, modifier) }
