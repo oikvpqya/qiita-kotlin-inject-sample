@@ -56,6 +56,7 @@ class HomeViewModel(
 class HomeRouteFactory(
     private val viewModelFactory: () -> HomeViewModel,
 ) : AppRouteFactory {
+
     override fun NavGraphBuilder.create(navController: NavController, modifier: Modifier) {
         composable<Home> { _ ->
             val viewModel = viewModel { viewModelFactory() }
