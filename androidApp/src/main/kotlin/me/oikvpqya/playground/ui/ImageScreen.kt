@@ -20,6 +20,7 @@ data class Image(
 
 @Inject
 class ImageRouteFactory : AppRouteFactory {
+
     override fun NavGraphBuilder.create(navController: NavController, modifier: Modifier) {
         composable<Image> { backStackEntry ->
             val image = backStackEntry.toRoute<Image>()

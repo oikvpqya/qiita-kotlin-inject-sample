@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val component = MainActivityComponent::class.create(this, applicationComponent)
+        val component = MainActivityComponent::class.create(applicationComponent)
 
         setContent {
             component.appContent.Content(
